@@ -1601,6 +1601,10 @@ status_t compileResourceFile(Bundle* bundle,
 ResourceTable::ResourceTable(Bundle* bundle, const String16& assetsPackage)
     : mAssetsPackage(assetsPackage), mNextPackageId(1), mHaveAppPackage(false),
       mIsAppPackage(!bundle->getExtending()),
+      /* begin, add by andy */
+      mIsAndyCur(bundle->getAndyCur()),
+      mIsAndyCurNum(bundle->getAndyCurNum()),
+      /* end, add by andy */
       mNumLocal(0),
       mBundle(bundle)
 {

@@ -49,6 +49,10 @@ public:
         : mCmd(kCommandUnknown), mVerbose(false), mAndroidList(false),
           mForce(false), mGrayscaleTolerance(0), mMakePackageDirs(false),
           mUpdate(false), mExtending(false),
+          /* begin, add by andy */
+          mAndyCur(false),
+          mAndyCurNum(0),
+          /* end, add by andy */
           mRequireLocalization(false), mPseudolocalize(false),
           mWantUTF16(false), mValues(false),
           mCompressionMethod(0), mJunkPath(false), mOutputAPKFile(NULL),
@@ -90,6 +94,12 @@ public:
     void setUpdate(bool val) { mUpdate = val; }
     bool getExtending(void) const { return mExtending; }
     void setExtending(bool val) { mExtending = val; }
+    /* begin, add by andy */
+    bool getAndyCur (void) const { return mAndyCur; }
+    void setAndyCur (bool val) { mAndyCur = val; }
+    int getAndyCurNum (void) const { return mAndyCurNum;}
+    void setAndyCurNum (int val)  { mAndyCurNum = val;}
+    /* end, add by andy */
     bool getRequireLocalization(void) const { return mRequireLocalization; }
     void setRequireLocalization(bool val) { mRequireLocalization = val; }
     bool getPseudolocalize(void) const { return mPseudolocalize; }
@@ -243,6 +253,10 @@ private:
     bool        mMakePackageDirs;
     bool        mUpdate;
     bool        mExtending;
+    /* begin, add by andy */
+    bool mAndyCur;
+    int mAndyCurNum;
+    /* end, add by andy */
     bool        mRequireLocalization;
     bool        mPseudolocalize;
     bool        mWantUTF16;

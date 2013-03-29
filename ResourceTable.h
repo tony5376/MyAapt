@@ -546,6 +546,10 @@ private:
     uint32_t mNextPackageId;
     bool mHaveAppPackage;
     bool mIsAppPackage;
+    /* begin, add by andy */
+    bool mIsAndyCur;
+    int mIsAndyCurNum;
+    /* end, add by andy */
     size_t mNumLocal;
     SourcePos mCurrentXmlPos;
     Bundle* mBundle;
