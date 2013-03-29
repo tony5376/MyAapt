@@ -1601,6 +1601,10 @@ status_t compileResourceFile(Bundle* bundle,
 ResourceTable::ResourceTable(Bundle* bundle, const String16& assetsPackage)
     : mAssetsPackage(assetsPackage), mNextPackageId(1), mHaveAppPackage(false),
       mIsAppPackage(!bundle->getExtending()),
+      /* begin, add by andy */
+      mIsAndyCur(bundle->getAndyCur()),
+      mIsAndyCurNum(bundle->getAndyCurNum()),
+      /* end, add by andy */
       mNumLocal(0),
       mBundle(bundle)
 {
@@ -3750,7 +3754,20 @@ sp<ResourceTable::Package> ResourceTable::getPackage(const String16& package)
             mHaveAppPackage = true;
             p = new Package(package, 127);
         } else {
-            p = new Package(package, mNextPackageId);
+            /* begin, add by andy */
+        	/* original resource ID only include 0x01 & 0x07, we add 0x2 -> 0x9 */
+        	//p = new Package(package, mNextPackageId);
+        	if(mIsAndyCur) {
+        		if(mIsAndyCurNum > 3) {
+        			p = new Package(package, mIsAndyCurNum);
+        		} else {
+        			p = new Package(package, 3);
+        		}
+        	} else {
+        		p = new Package(package, mNextPackageId);
+        	}
+            /* end, add by andy */
+
         }
         //printf("*** NEW PACKAGE: \"%s\" id=%d\n",
         //       String8(package).string(), p->getAssignedId());

@@ -312,7 +312,21 @@ int main(int argc, char* const argv[])
                 bundle.setUpdate(true);
                 break;
             case 'x':
-                bundle.setExtending(true);
+                /* begin, add by andy */
+            	//bundle.setExtending(true);
+				
+            	if(*(argv[0]+2) == '\0') {
+            		// original -x parameter
+            		bundle.setExtending(true);
+            	} else {
+            		const char *pAndy = argv[0]+2;
+
+            		bundle.setExtending(true);
+            		bundle.setAndyCur(true);
+            		bundle.setAndyCurNum(atoi(pAndy));
+            		cp++;
+            	}
+                /* end, add by andy */
                 break;
             case 'z':
                 bundle.setRequireLocalization(true);
