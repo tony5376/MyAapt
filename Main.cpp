@@ -257,6 +257,13 @@ int main(int argc, char* const argv[])
     argc -= 2;
     argv += 2;
 
+	/* begin, add by andy */
+    printf("xucw: aapt \n");
+    for(int i=0; i < argc; i++) {
+        printf("%s ",argv[i]);
+    }
+	/* end, add by andy */
+
     /*
      * Pull out flags.  We support "-fv" and "-f -v".
      */
