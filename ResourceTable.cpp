@@ -2044,6 +2044,27 @@ uint32_t ResourceTable::getResId(const String16& ref,
 {
     String16 package, type, name;
     bool refOnlyPublic = true;
+
+
+
+#if 1
+    /* begin, by andy for support direct index*/
+    const String16 hex("0x");
+
+    if(ref.startsWith(hex)) {
+         Res_value identValue;
+         if (!ResTable::stringToInt(ref.string(), ref.size(), &identValue)) {
+            if (outErrorMsg) {
+                *outErrorMsg = "Given direct index attribute is not an integer";
+            }
+             return 0;
+         }
+
+        return identValue.data;
+    }
+    /* end, by andy for support direct index*/
+#endif
+    
     if (!ResTable::expandResourceRef(
         ref.string(), ref.size(), &package, &type, &name,
         defType, defPackage ? defPackage:&mAssetsPackage,
